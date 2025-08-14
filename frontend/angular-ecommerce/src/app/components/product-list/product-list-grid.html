@@ -1,0 +1,66 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+        <!--loop over collection of products -->
+        <div *ngFor="let tempProduct of products" class="col-md-3">
+          <div class="product-box">
+            <a routerLink = "/products/{{tempProduct.id}}">
+              <img [src]="'assets/images/products/' + tempProduct.photoName + '.png'" class="image-responsive">
+              <h1>{{tempProduct.name}}</h1>
+              <h2>{{tempProduct.description}}</h2>
+            </a>
+            <div class="bottom-section">
+              <div class="price">
+                {{(tempProduct.basePrice / tempProduct.amount) |currency: 'USD'}}
+              </div>
+              <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-small">Add to Cart!</button>
+            </div>
+          </div>
+        </div>
+        <!-- this div is used to  alert if product list is empty (ex: no products for a given criteria searched)
+           the role="alert" helps with blind accesablity technoloogy
+           the (?) symbol allows for something to be null or undefined without throwing a compiler error
+           insyead itll just compile as 0 and the alert will continue-->
+        <!-- col-md-12 means in the middle of the row (our div class="row") take up all 12 colunms
+            (bootstrap css splits "row"s into 12 sos thats essentaily the whole length)-->
+
+        <div *ngIf="products?.length==0" class="alert alert-warning col-md-12" role="alert"> No products found.</div>
+      </div>
+
+      <!--pagination controls-->
+      <div class="footer-pagination">
+        <div class="row">
+          <div class="col-md-7">
+            
+          </div>
+          <div class="col-md-5">
+            <!--[boundryLinks]="true" i dont like the look but it will show to go all the way tp the first page or all the way to the end-->  
+            <ngb-pagination [(page)]="pageNumber"
+                             [pageSize]="pageSize"
+                             [collectionSize]="totalElements"
+                             [maxSize]="5"
+                             (pageChange)="listProducts()">
+
+            </ngb-pagination>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-7">
+            
+          </div>
+          <div class="col-md-5 mt-2" >
+            <h5>Products Per Page:</h5>
+            <select #myPageSize (change)="updatePageSize(+myPageSize.value)">
+              <option>4</option> 
+              <option selected="true">8</option>
+              <option >12</option>
+              <option >24</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

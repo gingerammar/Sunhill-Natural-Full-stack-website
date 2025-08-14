@@ -1,0 +1,14 @@
+
+<div class="menu-sidebar-content js-scrollbar1">
+    <nav class="navbar-sidebar">
+        <ul class="list-unstyled navbar-list">
+            <li *ngFor="let tempProductCategory of productCategories">
+                <!-- router link is a route instead of an href(full url path)-->
+                <!-- routerLinkActive is the css style that willl be applied once the route has be used-->
+                <a routerLink="/category/{{tempProductCategory.id}}" routerLinkActive="active-link">
+                   {{tempProductCategory.categoryName}}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

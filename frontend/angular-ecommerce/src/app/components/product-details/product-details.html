@@ -1,0 +1,14 @@
+<div class="detail-section">
+    <div class="container-fluid">
+        <img class="detail-img" [src]="'assets/images/products/' + product.photoName + '.png'" alt="{{product.name}}">
+        <h2 >{{product.name}}</h2>
+        <div class="price">
+            {{(product.basePrice / product.amount) |currency: 'USD'}}
+        </div>
+        <button (click)="addToCart(product)" class="btn btn-primary btn-small">Add to Cart!</button>
+        <h4 style="margin-top: 10px;">Description:</h4>
+        <p>{{product.description}}</p>
+        
+
+    </div>
+</div>

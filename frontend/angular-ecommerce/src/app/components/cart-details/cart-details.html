@@ -1,0 +1,73 @@
+<div class="main-content">
+    <section class="section-content section-content-p30 cart-wrapper">
+        <div *ngIf="cartItems.length>0">
+            <div class="d-flex justify-content-between mb-4">
+                <h5>{{totalQuantity}} items in cart</h5>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-hover cart-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th>Unit Price</th>
+                            <th>Subtotal</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tempCartItem of cartItems">
+                            <td>
+                                <img src="{{tempCartItem.imageUrl}}">
+                                {{tempCartItem.name}}
+                            </td>
+                            <td>
+                                <div style="text-align: center;">
+                                    <button (click)="decrementQuantity(tempCartItem)"
+                                        class="btn btn-secondary btn-small">
+                                        -
+                                    </button>
+                                    {{tempCartItem.quantity}}
+                                    <button (click)="incrementQuantity(tempCartItem)"
+                                        class="btn btn-secondary btn-small">
+                                        +
+                                    </button>
+                                </div>
+                            </td>
+                            <td>{{tempCartItem.price|currency: 'USD'}}</td>
+                            <td>{{tempCartItem.price * tempCartItem.quantity |currency: 'USD'}}</td>
+                            <td class="remove-col">
+                                <button (click)="remove(tempCartItem)"
+                                        class="btn btn-secondary btn-small">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td colspan="3" class="text-right"></td>
+                            <td><strong>Total: {{totalPrice |currency: 'USD'}}</strong></td>
+                            <td></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+            
+                </div>
+                <div class="col-md-5 mt-2" >
+                    <a routerLink= "/checkout" class="btn-checkout">Checkout!</a>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="cartItems.length==0" class="alert alert-warning col-md-12" role="alert">
+            Your shopping cart is empty.
+            <a routerLink="/products">
+                Add products to cart!
+            </a>
+        </div>
+    </section>
+</div>

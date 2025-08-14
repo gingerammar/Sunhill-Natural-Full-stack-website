@@ -1,0 +1,13 @@
+<div class="form-header">
+    <!-- #myinput is a refrence varible that can be used as a parmeter in any tag on or below 
+     where it is declared-->
+    <!--keyup is a event in which a key is presssed and a function is run -->
+    <input  class="au-input au-input-xl"
+            #myInput type="text"
+            placeholder="Find Products..." 
+            (keyup.enter)="doSearch(myInput.value)"/>
+    <!--click is a event in which a key is presssed and a function is run (like an onClick)-->
+    <button class="au-btn-submit" (click)="doSearch(myInput.value)">
+        Search
+    </button>
+</div>
